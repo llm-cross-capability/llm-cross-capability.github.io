@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cross Capabilities of LLMs</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script> -->
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/tangram.png">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</nav> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Law of the Weakest Link: Cross Capabilities of Large Language Models (ICLR 2025)</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://maszhongming.github.io">Ming Zhong</a>*<sup>1,2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.astonzhang.com/">Aston Zhang</a>*<sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/xuewei-wang-97a6b4190/">Xuewei Wang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/rayhou/">Rui Hou</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/wenhan-xiong-0a5984a3/">Wenhan Xiong</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://cs.stanford.edu/~cgzhu/">Chenguang Zhu</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://czxttkl.github.io/">Zhengxing Chen</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/liang-tan-6646a484/">Liang Tan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/xueying-bi/">Chloe Bi</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://ai.meta.com/people/209431298931133/mike-lewis/">Mike Lewis</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/sravyapopuri/">Sravya Popuri</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/sharan-narang/">Sharan Narang</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/melanie-kambadur/">Melanie Kambadur</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/dhruv-mahajan-4397764/">Dhruv Mahajan</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.linkedin.com/in/edunov/">Sergey Edunov</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://hanj.cs.illinois.edu">Jiawei Han</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://lvdmaaten.github.io/">Laurens van der Maaten</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Llama Team, AI @ Meta,</span>
+            <span class="author-block"><sup>2</sup>University of Illinois Urbana-Champaign</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2409.19951"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://arxiv.org/abs/2011.12948"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span> -->
+              <!-- Video Link. -->
+              <!-- <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/facebookresearch/llm-cross-capabilities"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+              <span class="link-block">
+                <a href="https://huggingface.co/datasets/MingZhong/crosseval"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-database"></i>
+                  </span>
+                  <span>CrossEval Benchmark</span>
+                </a>
+              </span>
+              <!-- Twitter Link. -->
+              <span class="link-block">
+                <a href="https://x.com/astonzhangAZ/status/1841131443420008918"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-twitter"></i>
+                  </span>
+                  <span>Twitter</span></a>
+                  </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+        <div class="content has-text-justified">
+          The development and evaluation of Large Language Models (LLMs) have primarily focused on individual capabilities. Typically, developers construct specialized datasets tailored to distinct abilities, and then train models by blending these data sources. However, this overlooks the intersection of multiple capabilities across different types of expertise that are often required for real-world tasks, which we term <strong>cross capabilities</strong>.
+          <br><br>In this project, we systematically explore this concept of cross capabilities in LLMs step by step.
+        </div>  
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">What is Cross Capability?</h2>
+        <div class="content has-text-justified">
+          <ul>
+            <li><strong>Examples:</strong>
+              <ul>
+              <li>Consider a user prompt asking, <i>“Which direction has the total rainfall in Tokyo, Japan been trending over the past 10 years?”</i> Such a task requires the integration of tool use (web browsing) with analytical reasoning.</li>
+              <li>When a developer provides HTML and JavaScript code and asks, <i>“Give me a basic understanding of what this web app does,”</i> the model must combine long-context comprehension with coding expertise.</li>
+              </ul>
+            </li>
+            <li><strong>Definition:</strong>
+              <ul>
+              <li>We define these scenarios as <strong>cross capabilities</strong>—the intersection of multiple distinct capabilities across different types of expertise necessary to address complex, real-world tasks.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Taxonomy for Individual and Cross Capabilities</h2>
+        <p align="center">
+        <img src="./static/images/taxonomy.png" class="center">
+        </p>
+        <div class="content has-text-justified">
+          We start by identifying seven core individual capabilities of LLMs and then pair them to form seven common cross capabilities, each supported by a manually constructed taxonomy.<br><br>
+          <ul>
+          <li><strong>Individual Capabilities:</strong>
+            <ul>
+            <li><i>English</i></li>
+            <li><i>Reasoning</i></li>
+            <li><i>Coding</i></li>
+            <li><i>Image Recognition</i></li>
+            <li><i>Tool Use</i></li>
+            <li><i>Long Context</i></li>
+            <li><i>Spanish</i></li>
+            </ul>
+          </li>
+          <li><strong>Cross Capabilities:</strong>
+            <ul>
+            <li><i>Coding & Reasoning</i></li>
+            <li><i>Image Recognition & Reasoning</i></li>
+            <li><i>Tool Use & Coding</i></li>
+            <li><i>Tool Use & Reasoning</i></li>
+            <li><i>Long Context & Coding</i></li>
+            <li><i>Spanish & Reasoning</i></li>
+            <li><i>Spanish & Image Recognition</i></li>
+            </ul>
+          </li>
+          <li><strong>Taxonomy:</strong>
+            <ul>
+            <li>As illustrated in the Figure, these taxonomies follow a hierarchical design: the root node represents either an individual or cross capability, with the next two layers (Level-1 and Level-2 categories) breaking these down into increasingly specific tasks.</li>
+            <li>This framework clearly distinguishes between tasks that rely on an individual capability and those that demand the integration of multiple abilities, allowing for a comprehensive evaluation of LLMs across various scenarios.</li>
+            </ul>
+          </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">CrossEval: Benchmarking LLM Cross Capabilities</h2>
+        <p align="center">
+        <img src="./static/images/crosseval.png" class="center" width="75%">
+        </p>
+        <div class="content has-text-justified">
+          To benchmark the cross capabilities of LLMs, we introduce the CrossEval benchmark, which includes:
+          <ul>
+          <li><strong>Prompts</strong>: 1,400 expert-annotated prompts, with 100 prompts per capability</li>
+          <li><strong>Category</strong>: each prompt categorized by level 1 and 2 based on the taxonomy</li>
+          <li><strong>Difficulty Level</strong>: 10% easy, 30% medium and 60% hard for each capability</li>
+          <li><strong>Reference Examples</strong>:</li>
+            <ul>
+            <li>Responses: 3 model responses per prompt</li>
+            <li>Expert reviews: 2 human ratings with explanations per model response</li>
+            <li>A total of 4,200 model responses and 8,400 expert reviews</li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Building LLM-based Evaluators</h2>
+        <p align="center">
+        <img src="./static/images/correlation.png" class="center" width="75%">
+        </p>
+        <div class="content has-text-justified">
+          CrossEval is the largest meta-evaluation benchmark for measuring the correlation between LLM-based scoring and human judgments. With each prompt including 3 reference model responses and 6 human ratings, we can explore how to develop the most effective in-domain LLM evaluator for this benchmark.
+          <ul>
+          <li><strong>Prompting LLMs for Evaluation:</strong>
+            <ul>
+            <li><strong>Multi-reference-based prompting:</strong> When using LLM-as-a-Judge, up to two reference responses, along with their ratings and explanations, are provided as context. For instance, when evaluating the first response, the LLM can be given the other responses with their four ratings.</li>
+            <li><strong>Point-deduction-based prompting:</strong> LLM-as-a-Judge paradigm tends to favor longer, more structured responses, which leads to inflated evaluation scores. To address this, instead of assigning scores directly, LLMs are instrusted to summarize issues in both reference examples and the response under evaluation, specifying point deductions.
+            </ul>
+          </li>
+          <li><strong>Correlations between LLM ratings and human judgments:</strong>
+            <ul>
+            <li>Each LLM shows particular strengths in evaluating different capabilities.</li>
+            <li>With our reference examples and prompting methods, LLM evaluators achieve a Pearson correlation of nearly 0.7 with expert annotators' judgments on CrossEval.</li>
+            </ul>
+          </li>
+          </ul>
+        </div>
+        <p align="center">
+        <img src="./static/images/ablation_reference.png" class="center" width="50%">
+        </p>
+        <div class="content has-text-justified">
+          <ul>
+          <li><strong>Ablation study on the number of reference examples:</strong></li>
+            <ul>
+              <li>As shown in the Figure, a clear trend emerges: as the number of reference examples increases, all three correlation metrics improve significantly.</li>
+              <li>Notably, when evaluating new model responses in our benchmark, we provide all three reference examples, which could potentially lead to even higher correlations.</li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Law of the Weakest Link in LLMs</h2>
+        <p align="center">
+        <img src="./static/images/result.png" class="center" width="90%">
+        </p>
+        <div class="content has-text-justified">
+          The full results of 17 LLMs from 5 model families are provided in the Table. Our experiments reveal several key findings:
+          <ul>
+          <li><strong>CrossEval effectively differentiates advanced models:</strong>
+            <ul>
+            <li>The CrossEval benchmark successfully distinguishes between state-of-the-art LLMs.</li>
+            <li>For instance, the four Claude model variants achieve progressively higher scores in the <i>Reasoning</i> capability: 56.81, 62.88, 66.22, and 71.54.</li>
+            </ul>
+          </li>
+          <li><strong>LLMs exhibit a “Law of the Weakest Link” effect in cross capabilities:</strong>
+            <ul>
+            <li>In cross-capability evaluations, we define one of the involved individual capabilities as stronger and the other as weaker if the absolute score difference between them exceeds 3 points.</li>
+            <li>In 58 cross-capability scenarios where this difference is present, 38 cases show performance lower than both individual capabilities (red background), and 20 show performance between the two but closer to the weaker capability (blue background).</li>
+            <li>Notably, no cross-capability score ever comes close to or exceeds the stronger individual capability.</li>
+            </ul>
+          </li>
+          <li><strong>Tool Use is currently the most challenging capability for LLMs:</strong>
+            <ul>
+            <li>Our prompt set includes tasks involving web browsing and code interpretation, and Llama 3.1 is the only model family that currently supports both.</li>
+            <li>However, these scores for <i>Tool Use</i> capability are significantly lower than those for other capabilities, indicating a critical area for improvement.</li>
+            </ul>
+          </li>
+          <li><strong>LLMs underperform in cross-capability tasks:</strong>
+            <ul>
+            <li>Despite our efforts to maintain a consistent difficulty level across both individual and cross-capability tasks, LLMs generally perform worse on tasks requiring multiple capabilities.</li>
+            <li>Across all models, the average score for individual capabilities is 65.72, compared to 58.67 for cross capabilities, revealing a significant performance gap.</li>
+            </ul>
+          </li>
+          </ul>
+        </div>
+        <p align="center">
+        <img src="./static/images/distribution.png" class="center" width="90%">
+        </p>
+        <div class="content has-text-justified">
+          <ul>
+          <li><strong>“Law of the Weakest Link” effect is evaluator-agnostic:</strong></li>
+            <ul>
+              <li>“Law of the Weakest Link” holds true regardless of the evaluator used. With GPT-4o, the density peaks slightly below the weaker capability, while Claude 3.5 Sonnet shows a slight peak above it. However, in both cases, performance clusters closely around the weaker capability.</li>
+              <li>“Law of the Weakest Link” effect suggests that deficiencies in an individual capability can substantially limit performance across any cross-capability tasks involving that capability.</li>
+              <li>CrossEval benchmark provides a foundation for identifying LLM weaknesses, but further research is needed to more comprehensively diagnose and address these deficiencies without compromising other capabilities.</li>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results. -->
+    <div class="columns is-centered">
+      <div class="column has-text-centered">
+        <h2 class="title is-3">Case Study on Individual-Capability Alterations</h2>
+        <p align="center">
+        <img src="./static/images/principle.png" class="center" width="90%">
+        </p>
+        <div class="content has-text-justified">
+          Beyond evaluating the relationship between individual and cross capabilities of LLMs on CrossEval, we explore the crucial follow-up questions: when we adjust the performance of specific capabilities, how does this affect cross-capability performance? To explore this in LLMs, we propose a prompting method designed to modulate specific capabilities of LLMs. Following this, we present case studies involving two LLMs to illustrate the effects of these alterations.
+          <ul>
+          <li><strong>Principle-based System Prompting</strong>:</li>
+            <ul>
+            <li>To reliably explore the impact of altering individual capabilities, we aim to enhance a specific capability without significantly affecting others.</li>
+            <li>Our solution is a principle-based method that iteratively refines the system prompt to enhance the specific capabilities of LLMs. It builds on the CrossEval dataset to selectively boost individual capabilities.</li>
+            </ul>
+          <li><strong>Investigating the impact of individual-capability alterations</strong>:</li>
+            <ul>
+            <li>Principle-based system prompting is particularly effective in enhancing weaker capabilities.</li>
+            <li>“Law of the Weakest Link” effect persists after individual-capability alterations.</li>
+              <ul>
+              <li>Altering the weaker capability in a cross-capability scenario has a significant effect on overall performance, while changes to the stronger capability result in only minor adjustments.</li>
+              <li>In 10 out of the 18 cross-capability scores examined across the two models, we observe one individual capability improving while the other declines. Notably, in 90% of these cases, changes in cross-capability performance closely follow the trends of the weaker capability.</li>
+              <li>Therefore, our case study also confirms that performance shifts in individual capabilities continue to conform to the “Law of the Weakest Link” effect.</li>
+              </ul>
+            </ul>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{zhong2024law,
+      title={Law of the Weakest Link: Cross Capabilities of Large Language Models},
+      author={Zhong, Ming and Zhang, Aston and Wang, Xuewei and Hou, Rui and Xiong, Wenhan and Zhu, Chenguang and Chen, Zhengxing and Tan, Liang and Bi, Chloe and Lewis, Mike and Popuri, Sravya and Narang, Sharan and Kambadur, Melanie and Mahajan, Dhruv and Edunov, Sergey and Han, Jiawei and van der Maaten, Laurens},
+      journal={arXiv preprint arXiv:2409.19951},
+      year={2024}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-6">
+        <div class="content">
+          <p>
+            The source code of this webpage is based on the <a href="https://github.com/nerfies/nerfies.github.io/">
+              Nerfies</a> project webpage.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
